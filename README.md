@@ -144,7 +144,7 @@ Keep in mind that building OpenCV with GPU acceleration on macOS using Rosetta 2
 It's also a good idea to double check the compatibility of OpenCV version, OpenCL version and GPU device before building.
 
 
-
+You can then run the script by executing `./build_cv_mac.sh`. This will clone OpenCV and opencv_contrib repositories, create a build directory and use cmake to configure OpenCV and then it will build and install OpenCV.
 
 
 
