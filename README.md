@@ -64,3 +64,42 @@ This repository provides a batch file that enables one-click building of OpenCV 
 You can use this script as a starting point to build OpenCV on your own machine, and feel free to customize it to suit your specific needs.
 Please keep in mind that this script is an example and may require some adjustments to work with your specific system setup.
 
+
+
+# Build OpenCV with CUDA on Linux
+
+## Hardware Requirements
+- A GPU that is compatible with the version of CUDA you wish to use
+- NVIDIA Drivers installed
+- NVIDIA CUDA Toolkit
+
+## Software Requirements
+- CMake
+- GCC or a similar compiler
+
+## Usage
+1. Clone the OpenCV and opencv_contrib repositories using git
+```
+git clone https://github.com/opencv/opencv.git
+git clone https://github.com/opencv/opencv_contrib.git
+```
+2. Create a build directory for OpenCV
+```
+mkdir build
+```
+3. Run CMake to configure the OpenCV build with CUDA support
+```
+cd build
+cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules -D ENABLE_PRECOMPILED_HEADERS=OFF -D WITH_CUDA=ON -D CUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda -D CUDA_ARCH_BIN="6.1" -D CUDA_ARCH_PTX="" -D BUILD_opencv_cudacodec=OFF ../opencv
+```
+4. Build OpenCV
+```
+sudo make install
+```
+
+Please make sure to adjust the path where you have installed the different software, the architecture options for CUDA and install directory as per your setup.
+You might want to add additional flags and options depending on your use case.
+
+
+
+
