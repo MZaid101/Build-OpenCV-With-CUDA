@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Clone the OpenCV and opencv_contrib repositories using git
+git clone https://github.com/opencv/opencv.git
+git clone https://github.com/opencv/opencv_contrib.git
+
+# Create a build directory for OpenCV
+mkdir opencv/build
+
+# Run CMake to configure the OpenCV build
+cd opencv/build
+cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules -D ENABLE_PRECOMPILED_HEADERS=OFF  ../
+
+# Build OpenCV
+make -j $(sysctl -n hw.ncpu)
+
+# Install OpenCV
+sudo make install
