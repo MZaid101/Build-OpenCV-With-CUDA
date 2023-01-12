@@ -100,6 +100,56 @@ sudo make install
 Please make sure to adjust the path where you have installed the different software, the architecture options for CUDA and install directory as per your setup.
 You might want to add additional flags and options depending on your use case.
 
+You can then run the script by executing `./build_cv_linux.sh`. This will clone OpenCV and opencv_contrib repositories, create a build directory and use cmake to configure OpenCV with CUDA support, then it will build and install OpenCV.
+
+
+
+# Build OpenCV with GPU acceleration on macOS using Rosetta 2
+
+## Hardware Requirements
+- A GPU that is compatible with OpenCL
+
+## Software Requirements
+- CMake
+- Xcode or a similar IDE
+- Rosetta 2 (available on macOS 11 and later)
+
+## Usage
+1. Clone the OpenCV and opencv_contrib repositories using git
+```
+git clone https://github.com/opencv/opencv.git
+git clone https://github.com/opencv/opencv_contrib.git
+```
+2. Create a build directory for OpenCV
+```
+mkdir build
+```
+3. Run CMake to configure the OpenCV build with OpenCL support and turn on the Rosetta 2 compatibility layer
+```
+cd build
+cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules -D ENABLE_PRECOMPILED_HEADERS=OFF -D WITH_OPENCL=ON -D OPENCV_DNN_OPENCL=ON -D CMAKE_CXX_FLAGS="-Xarch_x86_64 -arch x86_64h -Xarch_x86_64h -Xarch_arm64 -arch arm64e" ../opencv
+```
+4. Build OpenCV
+```
+make -j $(sysctl -n hw.ncpu)
+```
+5. Install OpenCV
+```
+sudo make install
+```
+Please make sure to adjust the path where you have installed the different software and install directory as per your setup.
+You can also use OpenCL to run your code on multiple platform including MacOS, Linux, Windows etc.
+
+Keep in mind that building OpenCV with GPU acceleration on macOS using Rosetta 2 requires macOS 11 and later and that this is an experimental feature, and there might be some issues. Always refer the official OpenCV documentation for the most up-to-date information on building OpenCV on macOS.
+It's also a good idea to double check the compatibility of OpenCV version, OpenCL version and GPU device before building.
+
+
+
+
+
+
+
+
 
 
 
