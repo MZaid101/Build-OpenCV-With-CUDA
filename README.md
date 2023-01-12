@@ -50,3 +50,17 @@ You may need to adjust the following parts of the script to match your system se
 - Cmake options : Depending on your use case you may want to turn on or off additional options.
 
 It's also a good idea to double check the compatibility of OpenCV version, CUDA version and GPU device.
+
+This repository provides a batch file that enables one-click building of OpenCV from source with CUDA support on Windows. With this script, you can easily build OpenCV with CUDA support using Visual Studio and CMake, and also allows you to use different versions of CUDA with different GPUs.
+
+
+## Usage
+1. Clone this repository
+2. Modify the script to match your system setup (paths, cuda version, cuda architecture etc)
+3. Run the script
+4. Wait for the script to finish
+5. OpenCV will be built and installed in the location specified by you.
+
+You can use this script as a starting point to build OpenCV on your own machine, and feel free to customize it to suit your specific needs.
+Please keep in mind that this script is an example and may require some adjustments to work with your specific system setup.
+
