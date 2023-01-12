@@ -10,6 +10,15 @@
 - Visual Studio (Community Edition is fine)
 - git
 
+## Requirements for building OpenCV with CUDA on Windows
+
+- [CMake](https://cmake.org/download/)
+- [Git](https://git-scm.com/downloads)
+- [Visual Studio](https://visualstudio.microsoft.com/downloads/)
+- [NVIDIA CUDA Toolkit](https://developer.nvidia.com/cuda-downloads)
+- [NVIDIA GPU Drivers](https://www.nvidia.com/Download/index.aspx)
+
+
 ## Environment setup
 1. Clone the OpenCV and opencv_contrib repositories using git
 ```
@@ -77,6 +86,16 @@ Please keep in mind that this script is an example and may require some adjustme
 - CMake
 - GCC or a similar compiler
 
+## Requirements for building OpenCV with CUDA on Linux
+
+- [CMake](https://cmake.org/download/)
+- [Git](https://git-scm.com/downloads)
+- [GCC](https://gcc.gnu.org/install/index.html)
+- [NVIDIA CUDA Toolkit](https://developer.nvidia.com/cuda-downloads)
+- [NVIDIA GPU Drivers](https://www.nvidia.com/Download/index.aspx)
+
+
+
 ## Usage
 1. Clone the OpenCV and opencv_contrib repositories using git
 ```
@@ -113,6 +132,13 @@ You can then run the script by executing `./build_cv_linux.sh`. This will clone 
 - CMake
 - Xcode or a similar IDE
 - Rosetta 2 (available on macOS 11 and later)
+
+## Requirements for building OpenCV with GPU acceleration on macOS using Rosetta 2
+
+- [CMake](https://cmake.org/download/)
+- [Git](https://git-scm.com/downloads)
+- [Xcode](https://developer.apple.com/xcode/)
+
 
 ## Usage
 1. Clone the OpenCV and opencv_contrib repositories using git
