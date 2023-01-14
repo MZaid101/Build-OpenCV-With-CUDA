@@ -84,20 +84,24 @@ It's important to note that you have to have OpenCL support on your Mac from you
 You will also need to have the appropriate version of Python installed in your conda environment, as well as any other dependencies that are required by OpenCV. These dependencies are usually specified in the OpenCV documentation.
 
 Once you have met these requirements, you can use CMake to configure and build OpenCV with OpenCL support, and then use the resulting library to accelerate computations in Python.
-
 ## Hardware Requirements
 - A GPU that is compatible with OpenCL
-
 ## Software Requirements
-- CMake
-- Xcode or a similar IDE
-- Rosetta 2 (available on macOS 11 and later)
-
-## Requirements for building OpenCV with GPU acceleration on macOS using Rosetta 2
-
 - [CMake](https://cmake.org/download/)
 - [Git](https://git-scm.com/downloads)
-- [Xcode](https://developer.apple.com/xcode/)
+- [Xcode](https://developer.apple.com/opencl/)
+- [OpenCL SDK](https://developer.apple.com/opencl/)
+## Requirements for building OpenCV with GPU acceleration on macOS
+- A Mac that is compatible with Rosetta 2, which allows macOS to run x86_64 executables.
+- A working installation of conda, which is used to create and manage the conda environment.
+- OpenCL SDK and headers installed, which allows macOS to access the OpenCL API.
+- A C++ compiler, such as Clang, installed on your system.
+- The OpenCV and opencv_contrib source code, which can be obtained by cloning the corresponding git repositories.
+Please make sure that the GPU you are using is compatible with OpenCL and that you have the appropriate version of the OpenCL SDK for your GPU installed on your system. Also, make sure you have a compatible version of Xcode installed on your Mac.
+Please note that building OpenCV with OpenCL support on macOS may not provide the same performance as running OpenCL on a native OpenCL platform, and that the support for OpenCL on macOS may not be as complete or well-maintained as on other platforms.
+
+
+
 
 
 ## Usage
