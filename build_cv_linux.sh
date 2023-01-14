@@ -1,18 +1,62 @@
 #!/bin/bash
 
-# Clone the OpenCV and opencv_contrib repositories using git
-git clone https://github.com/opencv/opencv.git
-git clone https://github.com/opencv/opencv_contrib.git
+# activate the conda environment
+# !!! change "myenv" to the name of your conda environment, or leave it as "base" if building in the base environment
+source activate myenv
 
-# Create a build directory for OpenCV
-mkdir opencv/build
+# set the path to the OpenCV source directory
+opencv_src_dir=/path/to/opencv-source-directory
 
-# Run CMake to configure the OpenCV build with CUDA support
-cd opencv/build
-cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules -D ENABLE_PRECOMPILED_HEADERS=OFF -D WITH_CUDA=ON -D CUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda -D CUDA_ARCH_BIN="6.1" -D CUDA_ARCH_PTX="" -D BUILD_opencv_cudacodec=OFF ../
+# set the path to the build directory
+build_dir=/path/to/build-directory
 
-# Build OpenCV
+# set the path to the CUDA toolkit directory
+# !!! change "10.2" to the version of CUDA you have installed
+cuda_dir=/usr/local/cuda-10.2
+
+# set the path to the Python executable
+# !!! change "3.7" to the version of Python you have installed in the conda environment
+python_exe=$CONDA_PREFIX/bin/python
+
+# set the path to the numpy library
+numpy_lib=$CONDA_PREFIX/lib/python3.7/site-packages/numpy/core/include
+
+# check if cuDNN library is installed
+# !!! change "7" to the version of cuDNN you have installed
+if [ ! -f "$cuda_dir/lib64/libcudnn.so.7" ]; then
+  echo "cuDNN library not found. Please install cuDNN and add it to the system PATH."
+  exit 1
+fi
+
+# create the build directory if it doesn't exist
+if [ ! -d "$build_dir" ]; then
+  mkdir -p $build_dir
+fi
+
+# navigate to the build directory
+cd $build_dir
+
+# run CMake to configure the build
+cmake -D CMAKE_BUILD_TYPE=RELEASE \
+      -D CMAKE_INSTALL_PREFIX=install \
+      -D WITH_CUDA=ON \
+      -D CUDA_TOOLKIT_ROOT_DIR=$
+      -D CUDA_TOOLKIT_ROOT_DIR=$cuda_dir \
+      -D WITH_CUBLAS=ON \
+      -D WITH_NVCUVID=ON \
+      -D WITH_CUDNN=ON \
+      -D WITH_OPENGL=ON \
+      -D BUILD_opencv_python3=ON \
+      -D PYTHON_EXECUTABLE=$python_exe \
+      -D PYTHON_INCLUDE_DIR=$numpy_lib \
+      -D PYTHON_PACKAGES_PATH=$CONDA_PREFIX/lib/python3.7/site-packages \
+      $opencv_src_dir
+
+# build OpenCV
 make -j $(nproc)
 
-# Install OpenCV
-sudo make install
+# install OpenCV
+make install
+
+# deactivate the conda environment
+source deactivate
