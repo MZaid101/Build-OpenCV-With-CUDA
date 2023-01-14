@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # activate the conda environment
-# !!! change "myenv" to the name of your conda environment, or leave it as "base" if building in the base environment
-source activate myenv
+# !!! change "base" to the name of your conda environment, or leave it as "base" if building in the base environment
+source activate base
 
 # set the path to the OpenCV source directory
 opencv_src_dir=/path/to/opencv-source-directory
