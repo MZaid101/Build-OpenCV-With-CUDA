@@ -59,31 +59,14 @@ This repository provides a batch file that enables one-click building of OpenCV 
 
 # Linux
 
-## Hardware Requirements
-- A GPU that is compatible with the version of CUDA you wish to use
-- NVIDIA Drivers installed
-- NVIDIA CUDA Toolkit
-
-## Software Requirements
-- CMake
-- GCC or a similar compiler
-
-## Requirements for building OpenCV with CUDA on Linux
-
-- [CMake](https://cmake.org/download/)
-- [Git](https://git-scm.com/downloads)
-- [GCC](https://gcc.gnu.org/install/index.html)
-- [NVIDIA CUDA Toolkit](https://developer.nvidia.com/cuda-downloads)
-- [NVIDIA GPU Drivers](https://www.nvidia.com/Download/index.aspx)
-
-
-
 ## Usage
 1. Clone the OpenCV and opencv_contrib repositories using git
 
 You can then run the script by executing `./build_cv_linux.sh`. This will clone OpenCV and opencv_contrib repositories, create a build directory and use cmake to configure OpenCV with CUDA support, then it will build and install OpenCV.
 
+You need to make sure that your conda environment has all the necessary dependencies installed, and is activated before running the script.
 
+Please make sure that the version of python, cuda, opencv, and the conda environment are compatible and should match. Also check if cuDNN is installed and the path is correct before running the script.
 
 # Build OpenCV with GPU acceleration on macOS using Rosetta 2
 
