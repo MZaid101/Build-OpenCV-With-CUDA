@@ -1,6 +1,6 @@
 rem activate the conda environment
-rem !!! change "myenv" to the name of your conda environment, or leave it as "base" if building in the base environment
-call activate myenv
+rem !!! change "base" to the name of your conda environment, or leave it as "base" if building in the base environment
+call activate base
 
 rem set the path to the OpenCV source directory
 set opencv_src_dir=C:\path\to\opencv-source-directory
