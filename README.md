@@ -9,6 +9,7 @@
 - CMake
 - Visual Studio (Community Edition is fine)
 - git
+- Anaconda
 
 ## Requirements for building OpenCV with CUDA on Windows
 
@@ -16,6 +17,7 @@
 - [Git](https://git-scm.com/downloads)
 - [Visual Studio](https://visualstudio.microsoft.com/downloads/)
 - [NVIDIA CUDA Toolkit](https://developer.nvidia.com/cuda-downloads)
+- cuDNN
 - [NVIDIA GPU Drivers](https://www.nvidia.com/Download/index.aspx)
 
 
