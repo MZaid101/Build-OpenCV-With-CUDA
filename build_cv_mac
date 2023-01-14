@@ -1,4 +1,6 @@
-#!/bin/bash
+# activate the conda environment
+# !!! change "base" to the name of your conda environment, or leave it as "base" if building in the base environment
+source activate base
 
 # Clone the OpenCV and opencv_contrib repositories using git
 git clone https://github.com/opencv/opencv.git
@@ -7,12 +9,38 @@ git clone https://github.com/opencv/opencv_contrib.git
 # Create a build directory for OpenCV
 mkdir opencv/build
 
-# Run CMake to configure the OpenCV build
-cd opencv/build
-cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules -D ENABLE_PRECOMPILED_HEADERS=OFF  ../
+# set the path to the OpenCV build directory
+opencv_build_dir=/path/to/opencv/build
 
-# Build OpenCV
+# navigate to the OpenCV build directory
+cd $opencv_build_dir
+
+# set the path to the opencv_contrib modules directory
+opencv_contrib_dir=/path/to/opencv_contrib/modules
+
+# set the path to the OpenCL SDK
+# !!! change "1.2" to the version of OpenCL SDK you have installed
+ocl_sdk_dir=/path/to/OpenCL/SDK/1.2
+
+# run CMake to configure the build
+cmake -D CMAKE_BUILD_TYPE=RELEASE \
+      -D CMAKE_INSTALL_PREFIX=install \
+      -D WITH_OPENCL=ON \
+      -D OPENCL_LIBRARY=$ocl_sdk_dir/libOpenCL.dylib \
+      -D OPENCL_INCLUDE_DIR=$ocl_sdk_dir/include/ \
+      -D OPENCV_EXTRA_MODULES_PATH=$opencv_contrib_dir \
+      -D BUILD_opencv_python3=ON \
+      -D PYTHON_EXECUTABLE=$CONDA_PREFIX/bin/python \
+      -D PYTHON_INCLUDE_DIR=$CONDA_PREFIX/include/python3.7m \
+      -D PYTHON_PACKAGES_PATH=$CONDA_PREFIX/lib/python3.7/site-packages \
+      /path/to/opencv
+
+# build OpenCV
 make -j $(sysctl -n hw.ncpu)
 
-# Install OpenCV
-sudo make install
+# install OpenCV
+make install
+
+# deactivate the conda environment
+source deactivate
+
