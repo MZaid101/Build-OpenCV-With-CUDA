@@ -70,6 +70,21 @@ Please make sure that the version of python, cuda, opencv, and the conda environ
 
 # Build OpenCV with GPU acceleration on macOS using Rosetta 2
 
+To build a GPU-accelerated version of OpenCV for Python with a conda environment on macOS, you will need the following:
+
+A Mac that is compatible with Rosetta 2, which allows macOS to run x86_64 executables.
+A working installation of conda, which is used to create and manage the conda environment.
+CUDA Toolkit and cuDNN library installed.
+OpenCL SDK and headers installed, which allows macOS to access the OpenCL API.
+A C++ compiler, such as Clang, installed on your system.
+The OpenCV and opencv_contrib source code, which can be obtained by cloning the corresponding git repositories.
+CMake, which is used to configure and build OpenCV.
+It's important to note that you have to have OpenCL support on your Mac from your GPU vendor, if it's not present then you can't use OpenCL with OpenCV on Mac.
+
+You will also need to have the appropriate version of Python installed in your conda environment, as well as any other dependencies that are required by OpenCV. These dependencies are usually specified in the OpenCV documentation.
+
+Once you have met these requirements, you can use CMake to configure and build OpenCV with OpenCL support, and then use the resulting library to accelerate computations in Python.
+
 ## Hardware Requirements
 - A GPU that is compatible with OpenCL
 
@@ -87,27 +102,8 @@ Please make sure that the version of python, cuda, opencv, and the conda environ
 
 ## Usage
 1. Clone the OpenCV and opencv_contrib repositories using git
-```
-git clone https://github.com/opencv/opencv.git
-git clone https://github.com/opencv/opencv_contrib.git
-```
-2. Create a build directory for OpenCV
-```
-mkdir build
-```
-3. Run CMake to configure the OpenCV build with OpenCL support and turn on the Rosetta 2 compatibility layer
-```
-cd build
-cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules -D ENABLE_PRECOMPILED_HEADERS=OFF -D WITH_OPENCL=ON -D OPENCV_DNN_OPENCL=ON -D CMAKE_CXX_FLAGS="-Xarch_x86_64 -arch x86_64h -Xarch_x86_64h -Xarch_arm64 -arch arm64e" ../opencv
-```
-4. Build OpenCV
-```
-make -j $(sysctl -n hw.ncpu)
-```
-5. Install OpenCV
-```
-sudo make install
-```
+
+
 Please make sure to adjust the path where you have installed the different software and install directory as per your setup.
 You can also use OpenCL to run your code on multiple platform including MacOS, Linux, Windows etc.
 
@@ -118,7 +114,13 @@ It's also a good idea to double check the compatibility of OpenCV version, OpenC
 You can then run the script by executing `./build_cv_mac.sh`. This will clone OpenCV and opencv_contrib repositories, create a build directory and use cmake to configure OpenCV and then it will build and install OpenCV.
 
 
+If all the requirements are met, this script should be able to configure, build, and install OpenCV with OpenCL support in a conda environment on macOS.
+It's important to make sure that the paths specified in the script for the OpenCV and opencv_contrib repositories, the OpenCL SDK, and the conda environment are all correct, and that you have a working installation of CMake and a C++ compiler.
+Also, it's important to make sure that your Mac supports OpenCL from your GPU vendor and you have the necessary OpenCL SDK installed.
+It's possible that you may encounter errors or issues during the build process, and will have to troubleshoot and fix them.
 
+It's recommended to run the script in a new terminal so that environment variables are set correctly.
+If you face any issues, you can check the error messages and also look at the CMakeCache.txt file in the build directory to see what options are being passed to CMake.
 
 
 
